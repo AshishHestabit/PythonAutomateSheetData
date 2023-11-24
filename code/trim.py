@@ -12,6 +12,6 @@ def trim_csv(input_file, output_file):
 
 files = ['Project.csv','Teams.csv','Team Members.csv','Member Ratings.csv','DEI.csv','ESG.csv','Emails.csv']
 for file in files:
-    input_csv_file = 'RawData/'+file
-    output_csv_file = 'TrimmedData/'+file
+    input_csv_file = '../RawData/'+file
+    output_csv_file = '../TrimmedData/'+file
     trim_csv(input_csv_file, output_csv_file)
