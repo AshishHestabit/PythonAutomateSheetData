@@ -1,11 +1,11 @@
 import csv
 import os
-from utility.utility import filter_emp, uid , create_emp , empty_csv_file
-from utility.create import create_employee
+from utility.utility import filter_emp, uid , create_emp , empty_csv_file, get_project
+from utility.create import create_employee ,create_teamMember
  
 # empty csv file
 
-files = ['employee.csv','team.csv','projectSupplier.csv','organization.csv']
+files = ['employee.csv','team.csv','projectSupplier.csv','organization.csv','ProjectTeamMember.csv']
 for file in files:
     empty_csv_file('../finalData/'+file)
     
@@ -69,11 +69,8 @@ if header[1] == header[7]:
         
     
 if header[1] != header[7]:
-    with open('../finalData/project.csv', 'r') as ProjectData:
-        ProjData = csv.reader(ProjectData)
-        next(ProjData)
-        d = next(ProjData)
-        supBody = [d[0],orgId," ",d[2],empList[0],empList[1],orgId]
+    project = get_project()
+    supBody = [project['ProjectId'],orgId," ",project['OwnerOrgId'],empList[0],empList[1],orgId]
         
     with open('../finalData/projectSupplier.csv', 'a') as SupplierFile:
         supWriter = csv.writer(SupplierFile)
@@ -108,12 +105,9 @@ with open('../finalData/team.csv', 'a') as TeamFile:
         teamWriter.writerow(TeamHeader)
         
     
-    with open('../finalData/project.csv', 'r') as ProjectData:
-        ProjData = csv.reader(ProjectData)
-        next(ProjData)
-        d = next(ProjData)
-        TeamId = uid()
-        TeamBody = [d[0],orgId,TeamId, TeamDataBody[1]]
+    project = get_project()
+    TeamId = uid()
+    TeamBody = [project['ProjectId'],orgId,TeamId, TeamDataBody[1]]
         
         
     input_csv_file = '../finalData/employee.csv'
@@ -129,4 +123,7 @@ with open('../finalData/team.csv', 'a') as TeamFile:
     teamWriter.writerow(TeamBody)   
 
 
-create_employee(orgId)
+emp = create_employee(orgId)
+Project = get_project()
+proId = project['ProjectId']
+create_teamMember(emp[0], proId, orgId, TeamId)

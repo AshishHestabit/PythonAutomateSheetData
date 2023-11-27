@@ -61,5 +61,13 @@ def empty_csv_file(file_path):
         pass  # Using 'pass' here effectively does nothing, but it truncates the file
 
 
+# get project 
+
+def get_project():
+    with open('../finalData/project.csv', 'r') as ProjectData:
+        ProjData = csv.DictReader(ProjectData)
+        # next(ProjData)
+        project = next(ProjData)
+    return project
 
 

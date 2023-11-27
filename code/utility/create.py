@@ -1,6 +1,6 @@
 import csv
 import os
-from utility.utility import uid,filter_emp
+from utility.utility import uid,filter_emp , filter_teamMember
 # all types pf files data insertion will be here
 
 # create employee from TeamMember sheet
@@ -41,6 +41,36 @@ def create_employee(orgId):
             empWriter.writerow(empBody)
     return empBody
 
-# def create_teamMember(EmpBody):
+def create_teamMember(EmpId, ProjectId, OrgId, TeamId):
+    with open('../TrimmedData/Team Members.csv') as csvFile:
+        Data = csv.reader(csvFile)
+        next(Data)
+        header = []
+        EmpBody = []
+        i = 0
+       
+        for row in Data:
+            if i < 26 :
+                header.append(row[0].split('\n')[0])
+                EmpBody.append(row[3])
+                i = i+1
+            else:
+                break
+    
+    with open('../finalData/ProjectTeamMember.csv', 'a') as memberFile:
+        memberWriter = csv.writer(memberFile)
+        
+        if os.stat('../finalData/ProjectTeamMember.csv').st_size > 0:
+            pass
+        else:
+            memberHeader = ['MemberId','ProjectId','OrgId','TeamId','RoleName','PerUtilizationOnTheTeam']
+            memberWriter.writerow(memberHeader)
+        
+        
+        result = filter_teamMember('../finalData/ProjectTeamMember.csv', ['MemberId','ProjectId','OrgId','TeamId'], [EmpId ,ProjectId, OrgId , TeamId])
+        if result['status'] == False:
+            memberBody = [EmpId ,ProjectId, OrgId , TeamId,EmpBody[4],EmpBody[5]]
+            memberWriter.writerow(memberBody)
+    return memberBody
     
     

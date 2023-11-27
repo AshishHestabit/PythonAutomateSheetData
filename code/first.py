@@ -12,15 +12,9 @@
 # # Example usage
 # short_id = generate_short_id()
 # print(short_id)
-
-import uuid
-
-def generate_short_id():
-    uuid_obj = uuid.uuid4()
-    short_id = int(uuid_obj) % 1000000  # 1000000 is 10^6, ensuring a 6-digit number
-    return short_id
-
-# Example usage
-short_id = generate_short_id()
-print(short_id)
+import csv
+with open('../finalData/project.csv', 'r') as ProjectData:
+        ProjData = csv.DictReader(ProjectData)
+        d = next(ProjData)
+        print(d['ProjectId'])
 
