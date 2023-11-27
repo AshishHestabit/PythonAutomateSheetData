@@ -1,7 +1,8 @@
 import csv
 import os
-from utility.utility import filter_csv, uid , create_emp , empty_csv_file
-
+from utility.utility import filter_emp, uid , create_emp , empty_csv_file
+from utility.create import create_employee
+ 
 # empty csv file
 
 files = ['employee.csv','team.csv','projectSupplier.csv','organization.csv']
@@ -116,9 +117,9 @@ with open('../finalData/team.csv', 'a') as TeamFile:
         
         
     input_csv_file = '../finalData/employee.csv'
-    filter_field = 'Name'  
-    filter_value = 'sathia' # team leader name  TeamDataBody[2]
-    empData = filter_csv(input_csv_file, filter_field, filter_value) 
+    filter_field = ['EmpOrgId','Name']
+    filter_value = [orgId,TeamDataBody[2]] # team leader name  TeamDataBody[2]
+    empData = filter_emp(input_csv_file, filter_field, filter_value) 
     if empData['status']:
         TeamBody.append(empData['data']['EmpId'])
     else :
@@ -126,3 +127,6 @@ with open('../finalData/team.csv', 'a') as TeamFile:
         TeamBody.append(emp[0])
           
     teamWriter.writerow(TeamBody)   
+
+
+create_employee(orgId)
