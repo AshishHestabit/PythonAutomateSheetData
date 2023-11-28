@@ -1,11 +1,11 @@
 import csv
 import os
-from utility.utility import filter_emp, uid , create_emp , empty_csv_file, get_project
-from utility.create import create_employee ,create_teamMember
+from utility.utility import filter_emp, uid , create_emp , empty_csv_file, get_project, date
+from utility.create import create_employee ,create_teamMember , create_tssRating, create_deiRating, create_esgRating
  
 # empty csv file
 
-files = ['employee.csv','team.csv','projectSupplier.csv','organization.csv','ProjectTeamMember.csv']
+files = ['employee.csv','team.csv','projectSupplier.csv','organization.csv','ProjectTeamMember.csv','TssRating.csv','deiRating.csv','esgRating.csv']
 for file in files:
     empty_csv_file('../finalData/'+file)
     
@@ -124,6 +124,14 @@ with open('../finalData/team.csv', 'a') as TeamFile:
 
 
 emp = create_employee(orgId)
+empId = emp[0]
 Project = get_project()
 proId = project['ProjectId']
-create_teamMember(emp[0], proId, orgId, TeamId)
+create_teamMember(empId, proId, orgId, TeamId)
+
+create_tssRating(empId, orgId)
+
+create_deiRating(empId, orgId)
+
+create_esgRating(empId, orgId)
+

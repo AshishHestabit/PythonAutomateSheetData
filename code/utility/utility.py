@@ -1,8 +1,15 @@
 import csv , os , uuid
-
+from datetime import datetime
 
 def uid():
     return str(int(uuid.uuid4()) % 1000000)
+
+# Get today's date
+def date():
+    today = datetime.today()
+    rounded_down_date = today.replace(day=1)
+    formatted_date = rounded_down_date.strftime("%m/%d/%Y")
+    return formatted_date
 
 def filter_csv(input_file, filter_field, filter_value):
     with open(input_file, 'r') as infile:
@@ -66,7 +73,6 @@ def empty_csv_file(file_path):
 def get_project():
     with open('../finalData/project.csv', 'r') as ProjectData:
         ProjData = csv.DictReader(ProjectData)
-        # next(ProjData)
         project = next(ProjData)
     return project
 
