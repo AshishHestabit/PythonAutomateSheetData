@@ -4,6 +4,17 @@ from datetime import datetime
 def uid():
     return str(int(uuid.uuid4()) % 1000000)
 
+# Trim csv file
+
+def trim_csv(input_file, output_file):
+    with open(input_file, 'r') as infile, open(output_file, 'a', newline='') as outfile:
+        reader = csv.reader(infile)
+        writer = csv.writer(outfile)
+
+        for row in reader:
+            trimmed_row = [field.strip() for field in row]
+            writer.writerow(trimmed_row)
+            
 # Get today's date
 def date():
     today = datetime.today()
@@ -47,10 +58,10 @@ def filter_team(input_file, filter_field, filter_value):
             
     
 def create_emp(empName , empOrgid):
-    with open('../finalData/employee.csv', 'a') as empFile:
+    with open('finalData/employee.csv', 'a') as empFile:
         empWriter = csv.writer(empFile)
         
-        if os.stat('../finalData/employee.csv').st_size > 0:
+        if os.stat('finalData/employee.csv').st_size > 0:
             pass
         else:
             empHeader = ['EmpId','EmpOrgId','Name','SupervisorID','SupervisorName','CommittedUtilization','PrimaryDiscipline','ExperienceYears','KeyExperienceAreas','PrefersToThinkAloneorTeam','NextDesiredRole','NextDesiredProject','Certification','MBTI','Age','Ethnicity','Gender','PrimaryWorkspace','QualityofWorkspace','Education level','EmpType','StartDate','Role','Utilization on the Team','Experience related to the role']
@@ -71,7 +82,7 @@ def empty_csv_file(file_path):
 # get project 
 
 def get_project():
-    with open('../finalData/project.csv', 'r') as ProjectData:
+    with open('finalData/project.csv', 'r') as ProjectData:
         ProjData = csv.DictReader(ProjectData)
         project = next(ProjData)
     return project

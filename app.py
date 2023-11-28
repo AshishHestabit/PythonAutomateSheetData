@@ -1,17 +1,27 @@
 import csv
 import os
-from utility.utility import filter_emp, uid , create_emp , empty_csv_file, get_project, date
-from utility.create import create_employee ,create_teamMember , create_tssRating, create_deiRating, create_esgRating
+from utils.utility import filter_emp, uid , create_emp , empty_csv_file, get_project, trim_csv
+from utils.create import create_employee ,create_teamMember , create_tssRating, create_deiRating, create_esgRating
+ 
+ # Trim all the csv files
+ 
+files = ['Project.csv','Teams.csv','Team Members.csv','Member Ratings.csv','DEI.csv','ESG.csv','Emails.csv']
+for file in files:
+    empty_csv_file('TrimmedData/'+file)
+    input_csv_file = 'RawData/'+file
+    output_csv_file = 'TrimmedData/'+file
+    trim_csv(input_csv_file, output_csv_file)
+ 
  
 # empty csv file
 
 files = ['employee.csv','team.csv','projectSupplier.csv','organization.csv','ProjectTeamMember.csv','TssRating.csv','deiRating.csv','esgRating.csv']
 for file in files:
-    empty_csv_file('../finalData/'+file)
+    empty_csv_file('finalData/'+file)
     
 # end
 
-with open('../TrimmedData/Project.csv') as csvFile:
+with open('TrimmedData/Project.csv') as csvFile:
     Data = csv.reader(csvFile)
     next(Data)
     header = []
@@ -26,9 +36,9 @@ with open('../TrimmedData/Project.csv') as csvFile:
             break
         
         
-with open('../finalData/organization.csv', 'a') as OrgFile:
+with open('finalData/organization.csv', 'a') as OrgFile:
     Orgwriter = csv.writer(OrgFile)
-    if os.stat('../finalData/organization.csv').st_size > 0:
+    if os.stat('finalData/organization.csv').st_size > 0:
         pass
     else:
         orgHeader = ['OrgId','OrgName','OrgHQCity','OrgHQState','OrgHQCountry']
@@ -53,10 +63,10 @@ for emp in empDict:
 
 if header[1] == header[7]:
     OwnerOrgId = orgId      
-    with open('../finalData/project.csv', 'a') as ProjectFile:
+    with open('finalData/project.csv', 'a') as ProjectFile:
         proWriter = csv.writer(ProjectFile)
         
-        if os.stat('../finalData/project.csv').st_size > 0:
+        if os.stat('finalData/project.csv').st_size > 0:
             pass
         else:
             projectHeader = ['ProjectId','ProjectName','OwnerOrgId','ProjectManagerId','ProjectExecId']
@@ -72,9 +82,9 @@ if header[1] != header[7]:
     project = get_project()
     supBody = [project['ProjectId'],orgId," ",project['OwnerOrgId'],empList[0],empList[1],orgId]
         
-    with open('../finalData/projectSupplier.csv', 'a') as SupplierFile:
+    with open('finalData/projectSupplier.csv', 'a') as SupplierFile:
         supWriter = csv.writer(SupplierFile)
-        if os.stat('../finalData/projectSupplier.csv').st_size > 0:
+        if os.stat('finalData/projectSupplier.csv').st_size > 0:
             pass
         else:
             supHeader = ['ProjectId','SupplierOrgId','SupplierRole','SuppliesToOrgId','SupplierPMId','SupplierExecId','OrgId'] 
@@ -82,7 +92,7 @@ if header[1] != header[7]:
         supWriter.writerow(supBody)
          
 # Create Team
-with open('../TrimmedData/Teams.csv', 'r') as TeamCsvFile:
+with open('TrimmedData/Teams.csv', 'r') as TeamCsvFile:
     TeamData = csv.reader(TeamCsvFile)
     next(TeamData)
     TeamDataBody = []
@@ -95,10 +105,10 @@ with open('../TrimmedData/Teams.csv', 'r') as TeamCsvFile:
             break
         
         
-with open('../finalData/team.csv', 'a') as TeamFile:
+with open('finalData/team.csv', 'a') as TeamFile:
     teamWriter = csv.writer(TeamFile)
     
-    if os.stat('../finalData/team.csv').st_size > 0:
+    if os.stat('finalData/team.csv').st_size > 0:
         pass
     else:
         TeamHeader = ['ProjectId','OrgId','TeamId','TeamName','TeamLeadId']
@@ -110,7 +120,7 @@ with open('../finalData/team.csv', 'a') as TeamFile:
     TeamBody = [project['ProjectId'],orgId,TeamId, TeamDataBody[1]]
         
         
-    input_csv_file = '../finalData/employee.csv'
+    input_csv_file = 'finalData/employee.csv'
     filter_field = ['EmpOrgId','Name']
     filter_value = [orgId,TeamDataBody[2]] # team leader name  TeamDataBody[2]
     empData = filter_emp(input_csv_file, filter_field, filter_value) 
