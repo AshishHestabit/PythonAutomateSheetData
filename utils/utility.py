@@ -66,10 +66,13 @@ def create_emp(empName , empOrgid):
         else:
             empHeader = ['EmpId','EmpOrgId','Name','SupervisorID','SupervisorName','CommittedUtilization','PrimaryDiscipline','ExperienceYears','KeyExperienceAreas','PrefersToThinkAloneorTeam','NextDesiredRole','NextDesiredProject','Certification','MBTI','Age','Ethnicity','Gender','PrimaryWorkspace','QualityofWorkspace','Education level','EmpType','StartDate','Role','Utilization on the Team','Experience related to the role']
             empWriter.writerow(empHeader)
+            # print(len(empHeader))
         
         empId = uid()
-        empBody = [empId, empOrgid, empName]
+        empBody = [empId, empOrgid, empName,'','','','','','','','','','','','','','','','','','','','','','']
         empWriter.writerow(empBody)
+        # print(len(empBody))
+        
     return empBody
     
 # empty the csv files
@@ -87,4 +90,29 @@ def get_project():
         project = next(ProjData)
     return project
 
+# Filter organization
+def filter_org(orgName):
+    with open('finalData/organization.csv', 'r') as orgFile:
+        orgData = csv.DictReader(orgFile)
+        for org in orgData:
+            if org.get('OrgName') == orgName:
+                return {'status': True, 'data': org}
+    return {'status': False, 'data': {}}
 
+# Filter Project
+def filter_project(projName):
+    with open('finalData/project.csv', 'r') as projFile:
+        projData = csv.DictReader(projFile)
+        for proj in projData:
+            if proj.get('ProjectName') == projName:
+                return {'status': True, 'data': proj}
+    return {'status': False, 'data': {}}
+
+# Filter Supplier
+def filter_supOrg(supId, projId):
+    with open('finalData/projectSupplier.csv', 'r') as supFile:
+        supData = csv.DictReader(supFile)
+        for supp in supData:
+            if supp.get('SupplierOrgId') == supId and supp.get('ProjectId') == projId:
+                return {'status': True, 'data': supp}
+    return {'status': False, 'data': {}}

@@ -1,6 +1,6 @@
 import csv
 import os
-from utils.utility import uid, filter_emp, filter_teamMember , create_emp,date
+from utils.utility import filter_team, uid, filter_emp, filter_teamMember , create_emp,date, get_project
 # all types pf files data insertion will be here
 
 # create employee from TeamMember sheet
@@ -27,7 +27,13 @@ def create_employee(orgId):
         else:
             empHeader = ['EmpId','EmpOrgId','Name','SupervisorID','SupervisorName','CommittedUtilization','PrimaryDiscipline','ExperienceYears','KeyExperienceAreas','PrefersToThinkAloneorTeam','NextDesiredRole','NextDesiredProject','Certification','MBTI','Age','Ethnicity','Gender','PrimaryWorkspace','QualityofWorkspace','Education level','EmpType','StartDate','Role','Utilization on the Team','Experience related to the role']
             empWriter.writerow(empHeader)
-        supId =  ''
+        sup = filter_emp('finalData/employee.csv', ['EmpOrgId','Name'], [orgId,EmpBody[3]])
+        if sup['status'] == False:
+            supData = create_emp(EmpBody[3],orgId)
+            supId = supData[0]
+        else:
+            supId = sup['data']['EmpId']
+        
         supName = EmpBody[3]
         empId = uid()
         result = filter_emp('finalData/employee.csv', ['EmpOrgId','Name'], [orgId,EmpBody[2]])
@@ -36,6 +42,56 @@ def create_employee(orgId):
             empWriter.writerow(empBody)
     return empBody
 
+
+# Create teams
+
+def create_team(orgId):
+    # Create Team
+    with open('TrimmedData/Teams.csv', 'r') as TeamCsvFile:
+        TeamData = csv.reader(TeamCsvFile)
+        next(TeamData)
+        TeamDataBody = []
+        i = 0
+        for row in TeamData:
+            if i < 3 :
+                TeamDataBody.append(row[1])
+                i = i+1
+            else:
+                break
+            
+    result = filter_team('finalData/team.csv',['OrgId','TeamName'],[orgId, TeamDataBody[1]]) 
+    
+    if result['status'] == False :
+              
+        with open('finalData/team.csv', 'a') as TeamFile:
+            teamWriter = csv.writer(TeamFile)
+            
+            if os.stat('finalData/team.csv').st_size > 0:
+                pass
+            else:
+                TeamHeader = ['ProjectId','OrgId','TeamId','TeamName','TeamLeadId']
+                teamWriter.writerow(TeamHeader)
+                
+            
+            project = get_project()
+            TeamId = uid()
+            TeamBody = [project['ProjectId'],orgId,TeamId, TeamDataBody[1]]
+                
+                
+            input_csv_file = 'finalData/employee.csv'
+            filter_field = ['EmpOrgId','Name']
+            filter_value = [orgId,TeamDataBody[2]] # team leader name  TeamDataBody[2]
+            empData = filter_emp(input_csv_file, filter_field, filter_value) 
+            if empData['status']:
+                TeamBody.append(empData['data']['EmpId'])
+            else :
+                emp = create_emp(TeamDataBody[2], orgId)
+                TeamBody.append(emp[0])
+                
+            teamWriter.writerow(TeamBody)
+    else:
+        TeamBody = list(result['data'].values())
+    return TeamBody
 
 # Create project Team Members
 def create_teamMember(EmpId, ProjectId, OrgId, TeamId):
@@ -82,13 +138,13 @@ def create_tssRating(ratedById, OrgId):
         i = 0
         for row in Data:
             if i < 34 :
-                tssBody[0].append(row[2])
-                tssBody[1].append(row[3])
-                tssBody[2].append(row[4])
-                tssBody[3].append(row[5])
-                tssBody[4].append(row[6])
-                tssBody[5].append(row[7])
-                tssBody[6].append(row[8])
+                tssBody[0].append(row[2].strip('%'))
+                tssBody[1].append(row[3].strip('%'))
+                tssBody[2].append(row[4].strip('%'))
+                tssBody[3].append(row[5].strip('%'))
+                tssBody[4].append(row[6].strip('%'))
+                tssBody[5].append(row[7].strip('%'))
+                tssBody[6].append(row[8].strip('%'))
                 i = i+1
             else:
                 break
@@ -112,7 +168,6 @@ def create_tssRating(ratedById, OrgId):
                 
             empRating.pop(0)
             empRating.insert(0,empId)
-            # empRating.insert(1,OrgId,ratedById,OrgId , '')
             empRating[1:1] = OrgId,ratedById,OrgId , date()
             tssWriter.writerow(empRating)
     return tssBody
