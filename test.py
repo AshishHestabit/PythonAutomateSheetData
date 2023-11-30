@@ -1,8 +1,14 @@
 from utils.create2 import create_employee, create_team, create_teamMember
 from utils.project2 import create_projOrg
-from utils.utility import empty_csv_file, get_project
+from utils.utility import empty_csv_file, get_project, trim_csv
 
-
+files = ['Project.csv','Teams.csv','Team Members.csv','Member Ratings.csv','DEI.csv','ESG.csv']
+for file in files:
+    empty_csv_file('TrimmedData/'+file)
+    input_csv_file = 'RawData/'+file
+    output_csv_file = 'TrimmedData/'+file
+    trim_csv(input_csv_file, output_csv_file)
+    
 files = ['project.csv','employee.csv','team.csv','projectSupplier.csv','organization.csv','ProjectTeamMember.csv','TssRating.csv','deiRating.csv','esgRating.csv']
 for file in files:
     empty_csv_file('finalData/'+file)
