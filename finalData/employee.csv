@@ -1,8 +1,6 @@
 EmpId,EmpOrgId,Name,SupervisorID,SupervisorName,CommittedUtilization,PrimaryDiscipline,ExperienceYears,KeyExperienceAreas,PrefersToThinkAloneorTeam,NextDesiredRole,NextDesiredProject,Certification,MBTI,Age,Ethnicity,Gender,PrimaryWorkspace,QualityofWorkspace,Education level,EmpType,StartDate,Role,Utilization on the Team,Experience related to the role
-22297,898774,Andy Williamson,,,,,,,,,,,,,,,,,,,,,,
-740848,898774,Nick Condon,,,,,,,,,,,,,,,,,,,,,,
-100562,898774,Simon,740848,Nick Condon,30,Construction Tansformation,29,"Value, Construction processes, zero carbon, innovation, sustainability, QS, PM",Team first,PP - Transformation,,,ENFJ,London,46 to 55,White,Male,Hybrid,Very good, , ,MMC Director,60,over 15 years
-368296,898774,Adam,,,,,,,,,,,,,,,,,,,,,,
-569832,898774,Angela,,,,,,,,,,,,,,,,,,,,,,
-548062,898774,Pete,,,,,,,,,,,,,,,,,,,,,,
-183125,898774,Danielle,,,,,,,,,,,,,,,,,,,,,,
+702570,27554,Julia Chambers,,,,,,,,,,,,,,,,,,,,,,
+324198,27554,Adam Jones,,,,,,,,,,,,,,,,,,,,,,
+650579,27554,Andy Williamson,,,,,,,,,,,,,,,,,,,,,,
+972121,27554,Nick Condon,,,,,,,,,,,,,,,,,,,,,,
+20368,27554,Simon,972121,Nick Condon,30,Construction Tansformation,29,"Value, Construction processes, zero carbon, innovation, sustainability, QS, PM",Team first,PP - Transformation,,,ENFJ,London,46 to 55,White,Male,Hybrid,Very good, , ,MMC Director,60,over 15 years

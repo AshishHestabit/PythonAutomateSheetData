@@ -1,16 +1,16 @@
-"Each Respondent answers all these questions for themselves and all other members:  ""So far in this Project, this person/I…""",,Member 1 is Team Leader from   2.Teams tab,,,,,,,,,,,,,,
-,"Project Name
+,"Each Respondent answers all these questions for themselves and all other members:  ""So far in this Project, this person/I…""",,Member 1 is Team Leader from   2.Teams tab,,,,,,,,,,,,,,
+TSS001,,"Project Name
 ",Alliance for Learning,Alliance for Learning,Alliance for Learning,Alliance for Learning,Alliance for Learning,Alliance for Learning,Alliance for Learning,Alliance for Learning,Alliance for Learning,Alliance for Learning,Alliance for Learning,Alliance for Learning,Alliance for Learning,Alliance for Learning,Alliance for Learning
-,Team Name,Alliance Strategy Team,Alliance Strategy Team,Alliance Strategy Team,Alliance Strategy Team,Alliance Strategy Team,Alliance Strategy Team,Alliance Strategy Team,Alliance Strategy Team,#ERROR!,,,,,,
-,Team Member's Name,Andy Williamson,Nick Condon,Simon,Adam,Angela,Pete,Danielle,<Member-8>,<Member-9>,<Member-10>,<Member-11>,<Member-12>,<Member-13>,<Member-14>,<Member-15>
-"Project Outcomes 
+TSS002,,Team Name,Alliance Strategy Team,Alliance Strategy Team,Alliance Strategy Team,Alliance Strategy Team,Alliance Strategy Team,Alliance Strategy Team,Alliance Strategy Team,Alliance Strategy Team,#ERROR!,,,,,,
+TSS003,,Team Member's Name,Andy Williamson,Nick Condon,Simon,Adam,Angela,Pete,Danielle,<Member-8>,<Member-9>,<Member-10>,<Member-11>,<Member-12>,<Member-13>,<Member-14>,<Member-15>
+TSS004,"Project Outcomes 
 What do you/others think is the probability of...
 ",What is the probability of this project being a success?,80%,70%,60%,60%,50%,75%,75%,,,,,,,,
-,What is the probability of this team being a success?,70%,70%,60%,90%,60%,75%,75%,,,,,,,,
-,What is the probability of meeting the project budget this year?,80%,75%,40%,80%,55%,75%,70%,,,,,,,,
-,What is the probability of meeting the project schedule this year?,90%,70%,70%,60%,40%,75%,60%,,,,,,,,
-,What is the probability of meeting the project safety objectives this year?,80%,90%,80%,90%,70%,75%,30%,,,,,,,,
-"Team Leadership (TLEAD)
+TSS005,,What is the probability of this team being a success?,70%,70%,60%,90%,60%,75%,75%,,,,,,,,
+TSS006,,What is the probability of meeting the project budget this year?,80%,75%,40%,80%,55%,75%,70%,,,,,,,,
+TSS007,,What is the probability of meeting the project schedule this year?,90%,70%,70%,60%,40%,75%,60%,,,,,,,,
+TSS008,,What is the probability of meeting the project safety objectives this year?,80%,90%,80%,90%,70%,75%,30%,,,,,,,,
+TSS009,"Team Leadership (TLEAD)
 
  ""So far in this Project, I/ this person…""","Collaborated by sharing ideas to ensure tasks are performed effectively
 
@@ -19,41 +19,41 @@ What do you/others think is the probability of...
 .
 .
 10 - Strongly Agree",9,8,8,8,9,8,9,,,,,,,,
-,"Comfortable receiving negative feedback
+TSS010,,"Comfortable receiving negative feedback
 
 1 - Strongly Disagree
 
 
 10 - Strongly Agree",8,8,8,7,8,6,7,,,,,,,,
-,"High level of self-awareness
+TSS011,,"High level of self-awareness
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",8,7,6,6,7,8,8,,,,,,,,
-,"Held themselves to the highest ethical standards without supervision
+TSS012,,"Held themselves to the highest ethical standards without supervision
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",9,8,7,8,8,8,8,,,,,,,,
-,"Provided input/thoughts regularly
+TSS013,,"Provided input/thoughts regularly
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",9,7,9,7,7,3,9,,,,,,,,
-,"Spent time to clarify team expectations
+TSS014,,"Spent time to clarify team expectations
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",7,7,6,6,7,5,9,,,,,,,,
-"Team Relationship (TREL)
+TSS015,"Team Relationship (TREL)
 
 
  ""So far in this Project, I/ this person…""","Appropriate level of planning and executing
@@ -63,42 +63,42 @@ What do you/others think is the probability of...
 .
 .
 10 - Strongly Agree",8,7,7,7,7,5,8,,,,,,,,
-,"Felt like they are part of the team
+TSS016,,"Felt like they are part of the team
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",9,8,8,7,9,4,8,,,,,,,,
-,"High motivation and interest in the team and BC
+TSS017,,"High motivation and interest in the team and BC
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",9,7,10,8,7,7,8,,,,,,,,
-,"Was highly empathetic
+TSS018,,"Was highly empathetic
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",9,7,7,8,8,5,8,,,,,,,,
-,"External factors impacted this person’s performance
+TSS019,,"External factors impacted this person’s performance
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",8,7,7,9,6,5,7,,,,,,,,
-,"Strongly supported diversity, equity, and inclusion
+TSS020,,"Strongly supported diversity, equity, and inclusion
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",7,8,7,8,9,5,7,,,,,,,,
-"Trust and Values (TV)
+TSS021,"Trust and Values (TV)
 
 
  ""So far in this Project, I/ this person…""","Adhered strongly to the specified core values
@@ -108,21 +108,21 @@ What do you/others think is the probability of...
 .
 .
 10 - Strongly Agree",9,8,9,8,7,5,8,,,,,,,,
-,"Felt the work is making a difference
+TSS022,,"Felt the work is making a difference
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",9,8,9,8,7,6,6,,,,,,,,
-,"Trusted the team
+TSS023,,"Trusted the team
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",9,8,8,7,8,8,7,,,,,,,,
-"Team Goal and Objectives (TGO)
+TSS024,"Team Goal and Objectives (TGO)
 
 
  ""So far in this Project, I/ this person…""","Agreed with team's goals and objectives
@@ -132,28 +132,28 @@ What do you/others think is the probability of...
 .
 .
 10 - Strongly Agree",8,8,8,8,8,8,7,,,,,,,,
-,"Always thought about actions' impact on customers
+TSS025,,"Always thought about actions' impact on customers
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",9,10,9,7,8,8,8,,,,,,,,
-,"Higher purpose (e.g., equal rights) for the team is important
+TSS026,,"Higher purpose (e.g., equal rights) for the team is important
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",8,7,9,9,6,6,7,,,,,,,,
-,"Strong drive to deliver work on schedule and budget
+TSS027,,"Strong drive to deliver work on schedule and budget
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",8,9,8,7,7,5,9,,,,,,,,
-"Team Roles and Responsibility (TRR)
+TSS028,"Team Roles and Responsibility (TRR)
 
 
  ""So far in this Project, I/ this person…""","Agreed with assigned roles and responsibilities
@@ -163,42 +163,42 @@ What do you/others think is the probability of...
 .
 .
 10 - Strongly Agree",7,8,8,8,8,6,7,,,,,,,,
-,"Completed similar roles prior to this role
+TSS029,,"Completed similar roles prior to this role
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",9,8,9,9,7,7,3,,,,,,,,
-,"Had the appropriate proficiency with tools/software for their role
+TSS030,,"Had the appropriate proficiency with tools/software for their role
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",8,7,7,8,7,7,7,,,,,,,,
-,"Had the correct educational level for their role
+TSS031,,"Had the correct educational level for their role
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",9,8,8,9,8,8,8,,,,,,,,
-,"Had the necessary skills to perform the tasks
+TSS032,,"Had the necessary skills to perform the tasks
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",9,8,8,8,7,,8,,,,,,,,
-,"Understood their assigned responsibilities
+TSS033,,"Understood their assigned responsibilities
 
 1 - Strongly Disagree
 .
 .
 .
 10 - Strongly Agree",8,7,7,7,9,7,8,,,,,,,,
-,"Was willing to take initiative for unassigned tasks
+TSS034,,"Was willing to take initiative for unassigned tasks
 
 1 - Strongly Disagree
 .

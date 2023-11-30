@@ -116,3 +116,12 @@ def filter_supOrg(supId, projId):
             if supp.get('SupplierOrgId') == supId and supp.get('ProjectId') == projId:
                 return {'status': True, 'data': supp}
     return {'status': False, 'data': {}}
+
+# Return Dict 
+
+def get_dict(head, body):
+    data = {}
+    for i,head in enumerate(head):
+        data[head] = body[i]
+    return data
+                
