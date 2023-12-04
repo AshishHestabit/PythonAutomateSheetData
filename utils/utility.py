@@ -58,10 +58,10 @@ def filter_team(input_file, filter_field, filter_value):
             
     
 def create_emp(empName , empOrgid):
-    with open('finalData/employee.csv', 'a') as empFile:
+    with open('FinalData/employee.csv', 'a') as empFile:
         empWriter = csv.writer(empFile)
         
-        if os.stat('finalData/employee.csv').st_size > 0:
+        if os.stat('FinalData/employee.csv').st_size > 0:
             pass
         else:
             empHeader = ['EmpId','EmpOrgId','Name','SupervisorID','SupervisorName','CommittedUtilization','PrimaryDiscipline','ExperienceYears','KeyExperienceAreas','PrefersToThinkAloneorTeam','NextDesiredRole','NextDesiredProject','Certification','MBTI','Age','Ethnicity','Gender','PrimaryWorkspace','QualityofWorkspace','Education level','EmpType','StartDate','Role','Utilization on the Team','Experience related to the role']
@@ -85,14 +85,14 @@ def empty_csv_file(file_path):
 # get project 
 
 def get_project():
-    with open('finalData/project.csv', 'r') as ProjectData:
+    with open('FinalData/project.csv', 'r') as ProjectData:
         ProjData = csv.DictReader(ProjectData)
         project = next(ProjData)
     return project
 
 # Filter organization
 def filter_org(orgName):
-    with open('finalData/organization.csv', 'r') as orgFile:
+    with open('FinalData/organization.csv', 'r') as orgFile:
         orgData = csv.DictReader(orgFile)
         for org in orgData:
             if org.get('OrgName') == orgName:
@@ -101,7 +101,7 @@ def filter_org(orgName):
 
 # Filter Project
 def filter_project(projName):
-    with open('finalData/project.csv', 'r') as projFile:
+    with open('FinalData/project.csv', 'r') as projFile:
         projData = csv.DictReader(projFile)
         for proj in projData:
             if proj.get('ProjectName') == projName:
@@ -110,7 +110,7 @@ def filter_project(projName):
 
 # Filter Supplier
 def filter_supOrg(supId, projId):
-    with open('finalData/projectSupplier.csv', 'r') as supFile:
+    with open('FinalData/projectSupplier.csv', 'r') as supFile:
         supData = csv.DictReader(supFile)
         for supp in supData:
             if supp.get('SupplierOrgId') == supId and supp.get('ProjectId') == projId:

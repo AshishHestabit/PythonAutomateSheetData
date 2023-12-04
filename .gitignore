@@ -1,4 +1,3 @@
-env/*
-TrimmedData/*
-finalData/*
-!finalData/project.csv
+/env
+/TrimmedData
+/finalData

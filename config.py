@@ -1,4 +1,4 @@
-memKeys = {'ProjectName': 'TM001', 'TeamName': 'TM002', 'TeamMemberName': 'TM003',
+EmpKeys = {'ProjectName': 'TM001', 'TeamName': 'TM002', 'TeamMemberName': 'TM003',
             'SupervisorName': 'TM004', 'Role': 'TM005', 'UtilizationontheTeam': 'TM006',
             'CommittedUtilization': 'TM007', 'PrimaryDiscipline': 'TM008',
             'ExperienceYears': 'TM009', 'Experiencerelatedtotherole': 'TM010',
@@ -10,7 +10,7 @@ memKeys = {'ProjectName': 'TM001', 'TeamName': 'TM002', 'TeamMemberName': 'TM003
             'Educationlevel': 'TM026'}
 
 
-teamKeys = {'ProjectName':'T001','TeamName':'T002','TeamLeaderName':'T003'}
+TeamKeys = {'ProjectName':'T001','TeamName':'T002','TeamLeaderName':'T003'}
 
 TeamMemberKeys = {'Role':'TM005','UtilizationontheTeam':'TM006'}
 
@@ -55,7 +55,7 @@ EsgKeys = {'ProjectName': 'ESG001', 'TeamName': 'ESG002', 'TeamMemberName': 'ESG
            'esg_mnt_parti': 'ESG033', 'esg_trn_org': 'ESG034', 'esg_trn_supp': 'ESG035',
            'esg_trn_progress': 'ESG036', 'esg_trn_progress_last': 'ESG037'}
 
-keys = { 'ProjectName': 'P001', 'OwnerOrganizationName': 'P002',
+ProjOrgkeys = { 'ProjectName': 'P001', 'OwnerOrganizationName': 'P002',
         'OwnerExecutiveName': 'P003', 'OwnerManagerName': 'P004',
         'SupplierOrganizationName': 'P005', 'SupplierExecutiveName': 'P006',
         'SupplierLeaderName': 'P007', 'MyOrganizationName': 'P008',
