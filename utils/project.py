@@ -1,94 +1,81 @@
 import csv, os
-from utils.utility import create_emp, get_project, uid, filter_org,filter_project,filter_supOrg
-
-
+from utils.utility import create_emp, get_dict, get_project, uid, filter_org,filter_project,filter_supOrg
+from config import keys
 def create_projOrg():
     with open('TrimmedData/Project.csv') as csvFile:
         Data = csv.reader(csvFile)
         next(Data)
-        header = []
-        body = []
-        # dictBody ={}
-        i = 0
-        # keys = {'p001':'ProjectName','p002':'OwnerOrganizationName','p003':'OwnerExecutiveName','p004':'OwnerManagerName','p005':'SupplierOrganizationName','p006':'SupplierExecutiveName','p007':'SupplierLeaderName','p008':'MyOrganizationName','p009':'MyOrganizationExecutiveName','p010':'MyOrganizationLeaderName','p011':'SuupliesToOrganization','p012':'ProjectBudget','p013':'ProjectComplexity'}
-
+        dictBody ={}
+        
         for row in Data:
-            if i < 12 :
-                # dictBody[row[0]] = row[2]
-                header.append(row[0])
-                body.append(row[1])
-                i = i+1
-            else:
-                break
-        
-    orgData = filter_org(body[7]) 
-        
-    if orgData['status']:  
-        orgId = orgData['data']['OrgId']
+            if row[0] in keys.values():
+                dictBody[row[0]] = row[2]
+           
+    orgData = filter_org(dictBody[keys['MyOrganizationName']]) 
+   
     if orgData['status'] == False :  
+        orgHeader = ['OrgId','OrgName','OrgHQCity','OrgHQState','OrgHQCountry']
         with open('finalData/organization.csv', 'a') as OrgFile:
-            Orgwriter = csv.writer(OrgFile)
+            Orgwriter = csv.DictWriter(OrgFile, fieldnames = orgHeader)
             if os.stat('finalData/organization.csv').st_size > 0:
                 pass
             else:
-                orgHeader = ['OrgId','OrgName','OrgHQCity','OrgHQState','OrgHQCountry']
-                Orgwriter.writerow(orgHeader)
+                Orgwriter.writeheader()
                 
             orgId = uid()
-            orgBody = [orgId , body[7]," "," "," "]
+            orgData = [orgId , dictBody[keys['MyOrganizationName']]," "," "," "]
+            orgBody = get_dict(orgHeader, orgData)
             Orgwriter.writerow(orgBody)
             
             # create Owner organization
-            if body[1] != body[7]:
+            if dictBody[keys['MyOrganizationName']]!= dictBody[keys['OwnerOrganizationName']]:
                 OwnerOrgId = uid()
-                orgBody = [OwnerOrgId , body[1]," "," "," "]
-                Orgwriter.writerow(orgBody)
+                OwnerOrgData = [OwnerOrgId , dictBody[keys['OwnerOrganizationName']]," "," "," "]
+                OwnerOrgBody = get_dict(orgHeader, OwnerOrgData)
+                Orgwriter.writerow(OwnerOrgBody)
             else:
                 OwnerOrgId = orgId
-        
+    else:
+        orgId = orgData['data']['OrgId']
 
-    
-    projData = filter_project(body[0])
+    projData = filter_project(dictBody[keys['ProjectName']])
     if projData['status'] == False:
-          
+        projectHeader = ['ProjectId','ProjectName','OwnerOrgId','ProjectManagerId','ProjectExecId']
         with open('finalData/project.csv', 'a') as ProjectFile:
-            proWriter = csv.writer(ProjectFile)
+            proWriter = csv.DictWriter(ProjectFile, fieldnames=projectHeader)
             
             if os.stat('finalData/project.csv').st_size > 0:
                 pass
             else:
-                projectHeader = ['ProjectId','ProjectName','OwnerOrgId','ProjectManagerId','ProjectExecId']
-                proWriter.writerow(projectHeader)
+                proWriter.writeheader()
                 
-            empDict = {body[2]:orgId, body[3]:orgId}
+            empDict = {dictBody[keys['OwnerExecutiveName']]:OwnerOrgId, dictBody[keys['OwnerManagerName']]:OwnerOrgId}
             empList =[]
             for emp in empDict:
                 employee = create_emp(emp , empDict[emp])
                 empList.append(employee[0])
                 
             ProjectId = uid()
-            projectBody = [ProjectId , body[0], OwnerOrgId, empList[0], empList[1]]
-            # projectBody = [ProjectId , body[0], None, None, None] #it's temporary data
+            projectData = [ProjectId , dictBody[keys['ProjectName']], OwnerOrgId, empList[0], empList[1]]
+            projectBody = get_dict(projectHeader, projectData)
             proWriter.writerow(projectBody)
-            
             
     project = get_project()        
     supData = filter_supOrg(orgId,project['ProjectId'])
-    if supData['status'] == False and body[1] != body[7]:  
-          
+    if supData['status'] == False and dictBody[keys['OwnerOrganizationName']] != dictBody[keys['MyOrganizationName']]:  
         empList =[]
-        empDict = {body[6]:orgId,body[5]:orgId} 
+        empDict = {dictBody[keys['SupplierLeaderName']]:orgId,dictBody[keys['SupplierExecutiveName']]:orgId} 
         for emp in empDict:
             employee = create_emp(emp , empDict[emp])
             empList.append(employee[0])
-        supBody = [project['ProjectId'],orgId," ",project['OwnerOrgId'],empList[0],empList[1],orgId]
-            
+        supDataBody = [project['ProjectId'],orgId," ",project['OwnerOrgId'],empList[0],empList[1],orgId]
+        supHeader = ['ProjectId','SupplierOrgId','SupplierRole','SuppliesToOrgId','SupplierPMId','SupplierExecId','OrgId'] 
+        supBody = get_dict(supHeader, supDataBody)
         with open('finalData/projectSupplier.csv', 'a') as SupplierFile:
-            supWriter = csv.writer(SupplierFile)
+            supWriter = csv.DictWriter(SupplierFile, fieldnames= supHeader)
             if os.stat('finalData/projectSupplier.csv').st_size > 0:
                 pass
             else:
-                supHeader = ['ProjectId','SupplierOrgId','SupplierRole','SuppliesToOrgId','SupplierPMId','SupplierExecId','OrgId'] 
-                supWriter.writerow(supHeader)
+                supWriter.writeheader()
             supWriter.writerow(supBody)
     return orgId
