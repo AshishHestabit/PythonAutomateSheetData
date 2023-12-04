@@ -1,4 +1,3 @@
-import json
 from utils.create import create_deiRating, create_employee, create_esgRating, create_team, create_teamMember, create_tssRating
 from utils.project import create_projOrg
 from utils.utility import empty_csv_file, get_project, trim_csv
