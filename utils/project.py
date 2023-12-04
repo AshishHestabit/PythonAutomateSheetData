@@ -1,6 +1,11 @@
 import csv, os
 from utils.utility import create_emp, get_dict, get_project, uid, filter_org,filter_project,filter_supOrg
 from config import ProjOrgkeys
+from dotenv import load_dotenv
+
+key_index = int(os.getenv("KEY_INDEX"))
+
+
 def create_projOrg():
     with open('TrimmedData/Project.csv') as csvFile:
         Data = csv.reader(csvFile)
@@ -8,8 +13,8 @@ def create_projOrg():
         dictBody ={}
         
         for row in Data:
-            if row[0] in ProjOrgkeys.values():
-                dictBody[row[0]] = row[2]
+            if row[key_index] in ProjOrgkeys.values():
+                dictBody[row[key_index]] = row[2]
            
     orgData = filter_org(dictBody[ProjOrgkeys['MyOrganizationName']]) 
    
